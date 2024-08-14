@@ -1,15 +1,14 @@
 import './App.css'
 import Navbar from './Navbar'
+import TopContainer from './TopContainer'
 
 function App() {
  
-
   return (
-    <>
-    <Navbar/>
-      
-    </>
-      
+    <div className="app-container">
+      <Navbar/>
+      <TopContainer/>
+    </div>
   )
 }
 

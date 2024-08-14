@@ -14,7 +14,7 @@ function Navbar() {
 
   return (
     <>
-    <div className='container'>
+    <div className='nav-container'>
       <div className='nav-left'>
         <div className='logo'>
         <img src="https://duchinese.net/vite/assets/brand-logo-DQSdbKZX.svg" alt="Du Chinese Logo" className='logo-image'/>
