@@ -1,0 +1,45 @@
+.card-item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+    height: 180px;
+    border: 1px solid rgb(228,228,228);
+    background-color: rgb(250,250,250);
+}
+
+.inner-container {
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    align-items: center;
+}
+
+.card-image {
+    background-color: red;
+    width: 100%;
+    align-self: center;
+    justify-self: center;
+}
+
+.card-date-type {
+    display: flex;
+    justify-self: center;
+    background-color: blue;
+    width: 100%;
+}   
+
+.card-title {
+    background-color: green;
+    width: 100%;
+}
+
+.card-level {
+    display: flex;
+    justify-content: end;
+    background-color: purple;
+    width: 100%;
+    height: 20px;
+    align-items: center;
+}
+
