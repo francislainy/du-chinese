@@ -5,9 +5,9 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Lessons from "./Lessons";
+import Lessons from "./LessonsPage";
 import Navbar from "./Navbar";
-import CardDetail from "./CardDetail";
+import CardDetail from "./LessonDetail";
 
 const Navigation: FC = () => {
   return (
