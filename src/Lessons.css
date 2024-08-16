@@ -1,0 +1,21 @@
+.lessons-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.lessons-ongoing-header {
+  margin-left: 80px;
+}
+
+h1 {
+    margin: 0px;
+}
+
+/* Lessons.css */
+hr {
+  border: 1px solid #bbb; /* Black color, 1px width */
+  margin-left: 80px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  width: 400px;
+}
