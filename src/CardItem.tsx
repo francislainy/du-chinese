@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "./CardItem.css";
 
 interface CardProps {
@@ -9,14 +10,24 @@ interface CardProps {
 }
 
 const CardItem: React.FC<CardProps> = ({
+  id,
   date,
   type,
   imageUrl,
   title,
   level,
 }) => {
+
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/card-detail/${id}`);
+  }
+
+
   return (
-    <div className="card-item-container">
+    <div className="card-item-container" onClick={handleClick}>
       <div className="card-inner-container">
         <div className="card-date-type-container">
           <p className="card-date">{date}</p>
