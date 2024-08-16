@@ -1,6 +1,6 @@
 import "./LessonList.css";
 
-import LessonItem from "./LessonItem";
+import LessonItem from "../LessonItem/LessonItem";
 
 interface ILesson {
   id: string;

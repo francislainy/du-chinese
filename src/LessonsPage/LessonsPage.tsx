@@ -1,7 +1,7 @@
 import "./LessonsPage.css";
-import LessonList from "./LessonList";
-import TopContainer from "./Banner";
-import LessonTypeList from "./FilterList";
+import LessonList from "./../LessonsList/LessonList";
+import TopContainer from "./../Banner/Banner";
+import FilterList from "./../FilterList/FilterList";
 import { useState } from "react";
 
 function Lessons() {
@@ -12,7 +12,7 @@ function Lessons() {
       <TopContainer />
       <h1 className="lessons-ongoing-header">Ongoing Series</h1>
       <hr />
-      <LessonTypeList
+      <FilterList
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
       />

@@ -1,5 +1,5 @@
 import "./FilterList.css";
-import FilterItem from "./FilterItem";
+import FilterItem from "../FilterItem/FilterItem";
 
 interface IFilterList {
   id: string;
