@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Lessons from "./../LessonsPage/LessonsPage";
 import Navbar from "./../Navbar/Navbar";
-import CardDetail from "./../LessonDetail/LessonDetail";
+import LessonDetail from "./../LessonDetail/LessonDetail";
 
 const Navigation: FC = () => {
   return (
@@ -16,7 +16,7 @@ const Navigation: FC = () => {
       <Routes>
         <Route path="/" element={<Navigate to="/lessons" />} />
         <Route path="/lessons" element={<Lessons />} />
-        <Route path="/card-detail/:id" element={<CardDetail />} />
+        <Route path="/card-detail/:id" element={<LessonDetail />} />
       </Routes>
     </Router>
   );

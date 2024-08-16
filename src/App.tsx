@@ -1,12 +1,12 @@
-import "./App.css";
-import Navigation from "./Navigation/Navigation";
+// import './App.css'
+import Navigation from './Navigation/Navigation'
 
 function App() {
   return (
     <div className="app-container">
-      <Navigation />
+      <Navigation/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
