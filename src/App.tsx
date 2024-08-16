@@ -1,15 +1,11 @@
 import './App.css'
-import CardList from './CardList'
-import Navbar from './Navbar'
-import TopContainer from './TopContainer'
+import Navigation from './Navigation'
 
 function App() {
  
   return (
     <div className="app-container">
-      <Navbar/>
-      <TopContainer/>
-      <CardList/>
+      <Navigation/>
     </div>
   )
 }

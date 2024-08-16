@@ -44,3 +44,8 @@
 .profile {
     cursor: pointer;
 }
+
+/* Navbar.css */
+a {
+    text-decoration: none;
+  }

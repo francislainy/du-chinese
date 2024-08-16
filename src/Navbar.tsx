@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './Navbar.css'
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-
 
 function Navbar() {
  
@@ -19,7 +19,7 @@ function Navbar() {
         <div className='logo'>
         <img src="https://duchinese.net/vite/assets/brand-logo-DQSdbKZX.svg" alt="Du Chinese Logo" className='logo-image'/>
         </div>
-        <div className={`nav-item ${activeIndex === 0 && 'active'}`} onClick={()=> handleActiveMenu(0)}>Du Chinese</div>
+        <Link to={`/lessons`}><div className={`nav-item ${activeIndex === 0 && 'active'}`} onClick={()=> handleActiveMenu(0)}>Du Chinese</div> </Link> 
         <div className={`nav-item ${activeIndex === 1 && 'active'}`} onClick={()=> handleActiveMenu(1)}>Lessons</div>
          <div className={`nav-item ${activeIndex === 2 && 'active'}`} onClick={()=> handleActiveMenu(2)}>Flashcards</div>
         <div className={`nav-item ${activeIndex === 3 && 'active'}`} onClick={()=> handleActiveMenu(3)}>Grammar</div> 
