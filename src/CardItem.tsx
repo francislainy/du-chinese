@@ -17,19 +17,20 @@ const CardItem: React.FC<CardProps> = ({
 }) => {
   return (
     <div className="card-item-container">
-      <div className="inner-container">
-        <div className="card-date-type">
-          <p>{date}</p>
-          <p>{type}</p>
+      <div className="card-inner-container">
+        <div className="card-date-type-container">
+          <p className="card-date">{date}</p>
+          <p className="card-type">{type}</p>
         </div>
 
         <div className="card-image">
-          <img src={imageUrl} alt={title} />
+          {/* <img src={imageUrl} alt={title} /> */}
+          <img src="src/assets/du-chinese-card.jpg" alt={title} />
         </div>
         <h3 className="card-title">{title}</h3>
 
-        <div className="card-level">
-          <p>{level}</p>
+        <div className="card-level-container">
+          <p className="card-level">{level}</p>
         </div>
       </div>
     </div>
