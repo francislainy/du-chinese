@@ -10,11 +10,11 @@
 }
 
 .card-date {
-    margin: 10px 5px;
+    margin: 10px 0px;
 }
 
 .card-type {
-    margin: 10px 5px;
+    margin: 10px 0px;
 }
 
 .card-inner-container {
@@ -63,5 +63,5 @@
 
 .card-level {
     background-color: yellow;
-    margin: 10px 5px;
+    margin: 10px 0px;
 }

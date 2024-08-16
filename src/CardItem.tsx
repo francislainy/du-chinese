@@ -17,14 +17,11 @@ const CardItem: React.FC<CardProps> = ({
   title,
   level,
 }) => {
-
-
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate(`/card-detail/${id}`);
-  }
-
+  };
 
   return (
     <div className="card-item-container" onClick={handleClick}>
@@ -39,7 +36,6 @@ const CardItem: React.FC<CardProps> = ({
           <img src="src/assets/du-chinese-card.jpg" alt={title} />
         </div>
         <h3 className="card-title">{title}</h3>
-
         <div className="card-level-container">
           <p className="card-level">{level}</p>
         </div>
