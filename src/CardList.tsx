@@ -11,85 +11,29 @@ interface ICard {
   level: string;
 }
 
-function CardList() {
-  const cardList: ICard[] = [
-    {
-      id: "1",
-      date: "2023-10-01",
-      type: "Type A",
-      imageUrl: "https://example.com/image1.jpg",
-      title: "Card Title 1",
-      level: "Advanced",
-    },
-    {
-      id: "2",
-      date: "2023-10-02",
-      type: "Type B",
-      imageUrl: "https://example.com/image2.jpg",
-      title: "Card Title 2",
-      level: "Upper Intermediate",
-    },
-    {
-      id: "3",
-      date: "2023-10-03",
-      type: "Type C",
-      imageUrl: "https://example.com/image3.jpg",
-      title: "Card Title 3",
-      level: "Advanced",
-    },
-    {
-      id: "4",
-      date: "2023-10-04",
-      type: "Type D",
-      imageUrl: "https://example.com/image4.jpg",
-      title: "Card Title 4",
-      level: "Intermediate",
-    },
-    {
-      id: "5",
-      date: "2023-10-05",
-      type: "Type E",
-      imageUrl: "https://example.com/image5.jpg",
-      title: "Card Title 5",
-      level: "Upper Intermediate",
-    },
-    {
-      id: "6",
-      date: "2023-10-06",
-      type: "Type F",
-      imageUrl: "https://example.com/image6.jpg",
-      title: "Card Title 6",
-      level: "Newbie",
-    },
-    {
-      id: "7",
-      date: "2023-10-07",
-      type: "Type G",
-      imageUrl: "https://example.com/image7.jpg",
-      title: "Card Title 7",
-      level: "Elementary",
-    },
-    {
-      id: "8",
-      date: "2023-10-08",
-      type: "Type H",
-      imageUrl: "https://example.com/image8.jpg",
-      title: "Card Title 8",
-      level: "Advanced",
-    },
-    {
-      id: "9",
-      date: "2023-10-09",
-      type: "Type I",
-      imageUrl: "https://example.com/image9.jpg",
-      title: "Card Title 9",
-      level: "Intermediate",
-    },
-  ];
+const allItems: ICard[] = [
+  { id: "1", date: '2023-01-01', type: 'Newbie', imageUrl: 'src/assets/du-chinese-card.jpg', title: 'Item 1', level: 'Newbie' },
+  { id: "2", date: '2023-01-02', type: 'Elementary', imageUrl: 'src/assets/du-chinese-card.jpg', title: 'Item 2', level: 'Elementary' },
+  { id: "3", date: '2023-01-03', type: 'Intermediate', imageUrl: 'src/assets/du-chinese-card.jpg', title: 'Item 3', level: 'Intermediate' },
+  { id: "4", date: '2023-01-04', type: 'Upper Intermediate', imageUrl: 'src/assets/du-chinese-card.jpg', title: 'Item 4', level: 'Upper Intermediate' },
+  { id: "5", date: '2023-01-05', type: 'Advanced', imageUrl: 'src/assets/du-chinese-card.jpg', title: 'Item 5', level: 'Advanced' },
+  { id: "6", date: '2023-01-06', type: 'Master', imageUrl: 'src/assets/du-chinese-card.jpg', title: 'Item 6', level: 'Master' },
+  { id: "7", date: '2023-01-06', type: 'Master', imageUrl: 'src/assets/du-chinese-card.jpg', title: 'Item 6', level: 'Master' },
+];
+
+interface CardListProps {
+  selectedFilters: string[];
+}
+
+function CardList({ selectedFilters }: CardListProps) {
+  const filteredItems = allItems.filter(
+    (item) =>
+      selectedFilters.length === 0 || selectedFilters.includes(item.type)
+  );
 
   return (
     <div className="card-list-container">
-      {cardList.map((card, index) => (
+      {filteredItems.map((card, index) => (
         <CardItem key={index} {...card} />
       ))}
     </div>

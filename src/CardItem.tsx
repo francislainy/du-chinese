@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "./CardItem.css";
 
 interface CardProps {
+  id: string;
   date: string;
   type: string;
   imageUrl: string;
@@ -9,14 +10,7 @@ interface CardProps {
   level: string;
 }
 
-const CardItem: React.FC<CardProps> = ({
-  id,
-  date,
-  type,
-  imageUrl,
-  title,
-  level,
-}) => {
+const CardItem: React.FC<CardProps> = ({ id, date, type, title, level }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -32,7 +26,6 @@ const CardItem: React.FC<CardProps> = ({
         </div>
 
         <div className="card-image">
-          {/* <img src={imageUrl} alt={title} /> */}
           <img src="src/assets/du-chinese-card.jpg" alt={title} />
         </div>
         <h3 className="card-title">{title}</h3>
