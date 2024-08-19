@@ -1,23 +1,15 @@
 import "./FilterList.css";
 import FilterItem from "../FilterItem/FilterItem";
-
-interface IFilterList {
-  id: string;
-  type: string;
-  isActive: boolean;
-}
+import { IFilter } from "../interfaces/IFilter.tsx";
+import React from "react";
 
 interface FilterListProps {
   selectedFilters: string[];
   setSelectedFilters: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-function FilterList({
-  selectedFilters,
-  setSelectedFilters,
-}: FilterListProps) {
-    
-  const filterList: IFilterList[] = [
+function FilterList({ selectedFilters, setSelectedFilters }: FilterListProps) {
+  const filterList: IFilter[] = [
     { id: "1", type: "Newbie", isActive: false },
     { id: "2", type: "Elementary", isActive: false },
     { id: "3", type: "Intermediate", isActive: false },
@@ -30,7 +22,7 @@ function FilterList({
     setSelectedFilters((prevFilters) =>
       prevFilters.includes(type)
         ? prevFilters.filter((filter) => filter !== type)
-        : [...prevFilters, type]
+        : [...prevFilters, type],
     );
   };
 
