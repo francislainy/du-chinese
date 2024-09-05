@@ -39,7 +39,7 @@ function LessonList({ selectedFilters }: LessonListProps) {
         <ClipLoader color={"#123abc"} loading={loading} size={50} />
       </div>
     );
-  if (error) return <div>{error}</div>;
+  if (error) return <div className={"error"}>{error}</div>;
 
   return (
     <div className="card-list-container">
