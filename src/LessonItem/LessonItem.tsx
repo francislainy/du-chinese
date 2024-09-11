@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import "./LessonItem.css";
 
+import duChineseCard from "../assets/du-chinese-card.jpg";
+
 interface LessonItemProps {
   id: string;
   date: string;
@@ -10,7 +12,13 @@ interface LessonItemProps {
   level: string;
 }
 
-const LessonItem: React.FC<LessonItemProps> = ({ id, date, type, title, level }) => {
+const LessonItem: React.FC<LessonItemProps> = ({
+  id,
+  date,
+  type,
+  title,
+  level,
+}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -26,7 +34,7 @@ const LessonItem: React.FC<LessonItemProps> = ({ id, date, type, title, level })
         </div>
 
         <div className="card-image">
-          <img src="src/assets/du-chinese-card.jpg" alt={title} />
+          <img src={duChineseCard} alt={title} />
         </div>
         <h3 className="card-title">{title}</h3>
         <div className="card-level-container">
