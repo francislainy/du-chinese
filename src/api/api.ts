@@ -12,4 +12,8 @@ const getLessons = async () => {
   return await axiosInstance.get("/lessons");
 };
 
-export { getLessons };
+const getLesson = async (id: string) => {
+  return await axiosInstance.get(`/lessons/${id}`);
+};
+
+export { getLessons, getLesson };

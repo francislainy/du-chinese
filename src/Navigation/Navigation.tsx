@@ -16,7 +16,7 @@ const Navigation: FC = () => {
       <Routes>
         <Route path="/" element={<Navigate to="/lessons" />} />
         <Route path="/lessons" element={<Lessons />} />
-        <Route path="/card-detail/:id" element={<LessonDetail />} />
+        <Route path="/lessons/:id" element={<LessonDetail />} />
       </Routes>
     </Router>
   );

@@ -2,15 +2,34 @@ import { useParams } from "react-router-dom";
 import "./LessonDetail.css";
 
 import duChineseCard from "../assets/du-chinese-card.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getLesson } from "../api/api.ts";
+import { ILesson } from "../interfaces/ILesson.ts";
 
 function LessonDetail() {
   const { id } = useParams<{ id: string }>();
   const [isSaved, setIsSaved] = useState<boolean>(false);
+  const [lesson, setLesson] = useState<ILesson | null>(null);
 
   const toggleSave = () => {
     setIsSaved(!isSaved);
   };
+
+  //todo: fetch is read/not read - 2024-09-24
+
+  useEffect(() => {
+    if (id) {
+      const fetchLesson = async (id: string) => {
+        try {
+          const response = await getLesson(id);
+          setLesson(response.data);
+        } catch (error) {
+          console.log("Error fetching lesson");
+        }
+      };
+      fetchLesson(id).then((r) => console.log(r));
+    }
+  }, [id]);
 
   return (
     <div className="m-10">
@@ -19,12 +38,14 @@ function LessonDetail() {
           <h1>Card Dail: {id}</h1>
           <div className="flex space-x-4">
             <div className="lesson-level text-orange-500 text-sm uppercase">
-              Newbie
+              {lesson?.level.toUpperCase()}
             </div>
-            <div className="lesson-date text-gray-500 text-sm">2019-06-05</div>
+            <div className="lesson-date text-gray-500 text-sm">
+              {lesson?.date}
+            </div>
           </div>
 
-          <div className="text-2xl font-bold text-red-500">HELLO</div>
+          <div className="text-2xl font-bold text-red-500">{lesson?.title}</div>
 
           <div
             className="cursor-pointer flex items-center space-x-2 bg-gray-200 p-2 rounded-md w-32 h-10 justify-center save-lesson-container"
@@ -38,11 +59,7 @@ function LessonDetail() {
 
           <div className="flex lesson-description-image items-center">
             <div className="lesson-text text-2xl text-gray-600">
-              <p>
-                Anne has just arrived in China to study. She is at the airport
-                waiting for her school’s car to pick her up and strikes up a
-                conversation with another airport visitor.
-              </p>
+              <p>{lesson?.description}</p>
             </div>
           </div>
         </div>
@@ -57,7 +74,7 @@ function LessonDetail() {
       </div>
 
       <div>
-        <div>Content</div>
+        <div>{lesson?.content}</div>
         <div>Mark as read</div>
       </div>
     </div>

@@ -22,7 +22,7 @@ const LessonItem: React.FC<LessonItemProps> = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/card-detail/${id}`);
+    navigate(`/lessons/${id}`);
   };
 
   return (

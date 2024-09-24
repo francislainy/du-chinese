@@ -4,5 +4,7 @@ export interface ILesson {
   type: string;
   imageUrl: string;
   title: string;
+  content: string;
+  description: string;
   level: string;
 }
