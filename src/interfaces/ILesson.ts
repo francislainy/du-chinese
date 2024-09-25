@@ -7,4 +7,6 @@ export interface ILesson {
   content: string;
   description: string;
   level: string;
+  favouritedByCurrentUser: boolean;
+  readByCurrentUser: boolean;
 }

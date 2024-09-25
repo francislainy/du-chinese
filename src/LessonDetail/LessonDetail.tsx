@@ -3,18 +3,29 @@ import "./LessonDetail.css";
 
 import duChineseCard from "../assets/du-chinese-card.jpg";
 import { useEffect, useState } from "react";
-import { getLesson } from "../api/api.ts";
+import { favouriteLesson, getLesson, unfavouriteLesson } from "../api/api.ts";
 import { ILesson } from "../interfaces/ILesson.ts";
 
 function LessonDetail() {
   const { id } = useParams<{ id: string }>();
-  const [isSaved, setIsSaved] = useState<boolean>(false);
   const [lesson, setLesson] = useState<ILesson | null>(null);
 
-  const toggleSave = () => {
-    setIsSaved(!isSaved);
+  const toggleSaveFavourite = async () => {
+    if (id && lesson) {
+      try {
+        const response = lesson.favouritedByCurrentUser
+          ? await unfavouriteLesson(id)
+          : await favouriteLesson(id);
+        console.log(response);
+        setLesson({
+          ...lesson,
+          favouritedByCurrentUser: !lesson.favouritedByCurrentUser,
+        });
+      } catch (error) {
+        console.log("Error saving favourite");
+      }
+    }
   };
-
   //todo: fetch is read/not read - 2024-09-24
 
   useEffect(() => {
@@ -49,10 +60,12 @@ function LessonDetail() {
 
           <div
             className="cursor-pointer flex items-center space-x-2 bg-gray-200 p-2 rounded-md w-32 h-10 justify-center save-lesson-container"
-            onClick={toggleSave}
+            onClick={toggleSaveFavourite}
           >
             <div className="text-2xl text-slate-400">
-              <i className={`fa${isSaved ? "s" : "r"} fa-star`}></i>
+              <i
+                className={`fa${lesson?.favouritedByCurrentUser ? "s" : "r"} fa-star`}
+              ></i>
             </div>
             <div className="text-slate-400 whitespace-nowrap">Save Lesson</div>
           </div>
