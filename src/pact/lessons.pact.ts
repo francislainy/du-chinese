@@ -12,6 +12,10 @@ const lessons: ILesson[] = [
     imageUrl: "avatar.jpg",
     title: "A fun lesson",
     level: "advanced",
+    content: "This is a fun lesson",
+    description: "A fun lesson",
+    favouritedByCurrentUser: false,
+    readByCurrentUser: false,
   },
 ];
 
