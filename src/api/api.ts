@@ -25,4 +25,19 @@ const unfavouriteLesson = async (lessonId: string) => {
   return await axiosInstance.post(`/users/unfavourite/${lessonId}`);
 };
 
-export { getLessons, getLesson, favouriteLesson, unfavouriteLesson };
+const readLesson = async (lessonId: string) => {
+  return await axiosInstance.post(`/users/read/${lessonId}`);
+};
+
+const unreadLesson = async (lessonId: string) => {
+  return await axiosInstance.post(`/users/unread/${lessonId}`);
+};
+
+export {
+  getLessons,
+  getLesson,
+  favouriteLesson,
+  unfavouriteLesson,
+  readLesson,
+  unreadLesson,
+};

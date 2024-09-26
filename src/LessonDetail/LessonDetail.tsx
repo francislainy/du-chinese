@@ -3,7 +3,13 @@ import "./LessonDetail.css";
 
 import duChineseCard from "../assets/du-chinese-card.jpg";
 import { useEffect, useState } from "react";
-import { favouriteLesson, getLesson, unfavouriteLesson } from "../api/api.ts";
+import {
+  favouriteLesson,
+  getLesson,
+  readLesson,
+  unfavouriteLesson,
+  unreadLesson,
+} from "../api/api.ts";
 import { ILesson } from "../interfaces/ILesson.ts";
 
 function LessonDetail() {
@@ -26,7 +32,23 @@ function LessonDetail() {
       }
     }
   };
-  //todo: fetch is read/not read - 2024-09-24
+
+  const toggleReadStatus = async () => {
+    if (id && lesson) {
+      try {
+        const response = lesson.readByCurrentUser
+          ? await unreadLesson(id)
+          : await readLesson(id);
+        console.log(response);
+        setLesson({
+          ...lesson,
+          readByCurrentUser: !lesson.readByCurrentUser,
+        });
+      } catch (error) {
+        console.log("Error saving read status");
+      }
+    }
+  };
 
   useEffect(() => {
     if (id) {
@@ -88,7 +110,12 @@ function LessonDetail() {
 
       <div>
         <div>{lesson?.content}</div>
-        <div>Mark as read</div>
+        <div onClick={toggleReadStatus}>
+          <i
+            className={`fa${lesson?.readByCurrentUser ? "s" : "r"} fa-${lesson?.readByCurrentUser ? "dot-circle" : "circle"}`}
+          ></i>{" "}
+          Mark as {lesson?.readByCurrentUser ? "unread" : "read"}
+        </div>
       </div>
     </div>
   );
