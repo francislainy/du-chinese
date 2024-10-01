@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import "./LessonDetail.css";
+// import "./LessonDetail.css";
 
 import duChineseCard from "../assets/du-chinese-card.jpg";
 import { useEffect, useState } from "react";

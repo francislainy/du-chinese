@@ -17,7 +17,6 @@ const getLesson = async (id: string) => {
 };
 
 const favouriteLesson = async (lessonId: string) => {
-  // return await axiosInstance.post(`/lessons/${id}/save`);
   return await axiosInstance.post(`/users/favourite/${lessonId}`);
 };
 
@@ -33,6 +32,14 @@ const unreadLesson = async (lessonId: string) => {
   return await axiosInstance.post(`/users/unread/${lessonId}`);
 };
 
+const login = async (username: string, password: string) => {
+  return await axiosInstance.post("/auth/login", { username, password });
+};
+
+const register = async (username: string, password: string) => {
+  return await axiosInstance.post("/auth/register", { username, password });
+};
+
 export {
   getLessons,
   getLesson,
@@ -40,4 +47,6 @@ export {
   unfavouriteLesson,
   readLesson,
   unreadLesson,
+  login,
+  register,
 };

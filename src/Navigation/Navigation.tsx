@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,14 +9,31 @@ import Lessons from "./../LessonsPage/LessonsPage";
 import Navbar from "./../Navbar/Navbar";
 import LessonDetail from "./../LessonDetail/LessonDetail";
 
+import { AuthContext } from "../context/AuthContext";
+import Login from "../Login.tsx";
+import Register from "../Register.tsx";
+
 const Navigation: FC = () => {
+  const authContext = useContext(AuthContext);
+
   return (
     <Router>
-      <Navbar />
+      {authContext?.isAuthenticated && <Navbar />}
       <Routes>
-        <Route path="/" element={<Navigate to="/lessons" />} />
-        <Route path="/lessons" element={<Lessons />} />
-        <Route path="/lessons/:id" element={<LessonDetail />} />
+        {authContext?.isAuthenticated ? (
+          <>
+            <Route path="/" element={<Navigate to="/lessons" />} />
+            <Route path="/lessons" element={<Lessons />} />
+            <Route path="/lessons/:id" element={<LessonDetail />} />
+          </>
+        ) : (
+          <>
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="*" element={<Navigate to="/login" />} />
+          </>
+        )}
       </Routes>
     </Router>
   );

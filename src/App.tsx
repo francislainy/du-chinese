@@ -1,12 +1,14 @@
-// import './App.css'
 import Navigation from "./Navigation/Navigation";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <div className="app-container">
-      <Navigation />
-    </div>
+    <AuthProvider>
+      <div className="app-container">
+        <Navigation />
+      </div>
+    </AuthProvider>
   );
 }
 
