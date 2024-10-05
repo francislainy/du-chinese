@@ -5,13 +5,13 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Lessons from "./../LessonsPage/LessonsPage";
-import Navbar from "./../Navbar/Navbar";
-import LessonDetail from "./../LessonDetail/LessonDetail";
 
 import { AuthContext } from "../context/AuthContext";
 import Login from "../Login.tsx";
 import Register from "../Register.tsx";
+import Navbar from "../components/Navbar/Navbar.tsx";
+import Lessons from "../components/LessonsPage/LessonsPage.tsx";
+import LessonDetail from "../components/LessonDetail/LessonDetail.tsx";
 
 const Navigation: FC = () => {
   const authContext = useContext(AuthContext);

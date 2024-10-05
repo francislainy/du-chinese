@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./LessonItem.css";
 
-import duChineseCard from "../assets/du-chinese-card.jpg";
+import duChineseCard from "../../assets/du-chinese-card.jpg";
 
 interface LessonItemProps {
   id: string;

@@ -2,8 +2,8 @@ import "./LessonList.css";
 
 import LessonItem from "../LessonItem/LessonItem";
 import { useEffect, useState } from "react";
-import { getLessons } from "../api/api.ts";
-import { ILesson } from "../interfaces/ILesson.ts";
+import { getLessons } from "../../api/api.ts";
+import { ILesson } from "../../interfaces/ILesson.ts";
 import { ClipLoader } from "react-spinners";
 
 interface LessonListProps {

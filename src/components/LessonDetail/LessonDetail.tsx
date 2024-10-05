@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 // import "./LessonDetail.css";
 
-import duChineseCard from "../assets/du-chinese-card.jpg";
+import duChineseCard from "../../assets/du-chinese-card.jpg";
 import { useEffect, useState } from "react";
 import {
   favouriteLesson,
@@ -9,8 +9,8 @@ import {
   readLesson,
   unfavouriteLesson,
   unreadLesson,
-} from "../api/api.ts";
-import { ILesson } from "../interfaces/ILesson.ts";
+} from "../../api/api.ts";
+import { ILesson } from "../../interfaces/ILesson.ts";
 
 function LessonDetail() {
   const { id } = useParams<{ id: string }>();

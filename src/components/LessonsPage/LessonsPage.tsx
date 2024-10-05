@@ -1,6 +1,6 @@
 import "./LessonsPage.css";
 import LessonList from "./../LessonsList/LessonList";
-import TopContainer from "./../Banner/Banner";
+import TopContainer from "../../components/Banner/Banner";
 import FilterList from "./../FilterList/FilterList";
 import { useState } from "react";
 
