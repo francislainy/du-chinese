@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { register } from "./api/api";
+import { AuthContext } from "./context/AuthContext";
+import { register, login } from "./api/api";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const authContext = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
       await register(username, password);
-      navigate("/login");
+      const response = await login(username, password);
+      if (response.status === 200) {
+        authContext?.login(response.data.token);
+        navigate("/lessons");
+      } else {
+        console.log("Login after registration failed");
+      }
     } catch (error) {
       console.log("Error registering");
     }
