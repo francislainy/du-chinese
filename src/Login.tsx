@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 import { login } from "./api/api";
 
@@ -47,6 +47,12 @@ const Login = () => {
         >
           Login
         </button>
+        <p className="mt-4 text-center">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-blue-500">
+            Register here
+          </Link>
+        </p>
       </div>
     </div>
   );
