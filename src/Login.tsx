@@ -6,6 +6,7 @@ import { login } from "./api/api";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -16,10 +17,14 @@ const Login = () => {
         authContext?.login(username, password);
         navigate("/lessons");
       } else {
-        console.log("Login failed");
+        setErrorMessage(
+          "Login failed. Please check your credentials and try again.",
+        ); // Update error message
       }
     } catch (error) {
-      console.log("Error logging in");
+      setErrorMessage(
+        "Error logging in. Please check your credentials or try again later.",
+      ); // Update error message
     }
   };
 
@@ -27,6 +32,9 @@ const Login = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-6 rounded shadow-md w-80">
         <h2 className="text-2xl mb-4">Login</h2>
+        {errorMessage && (
+          <p className="mb-4 text-red-500">{errorMessage}</p> // Display error message
+        )}
         <input
           type="text"
           placeholder="Username"
