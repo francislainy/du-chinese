@@ -20,12 +20,6 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const login = (username: string, password: string) => {
     setCredentials({ username, password });
     setIsAuthenticated(true);
-
-    // // Set Axios headers after login
-    // axios.interceptors.request.use((config) => {
-    //   config.auth = { username, password };
-    //   return config;
-    // });
   };
 
   const logout = () => {
