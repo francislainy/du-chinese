@@ -1,10 +1,11 @@
 import "./LessonList.css";
 
 import LessonItem from "../LessonItem/LessonItem";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getLessons } from "../../api/api.ts";
 import { ILesson } from "../../interfaces/ILesson.ts";
 import { ClipLoader } from "react-spinners";
+import { AuthContext } from "../../context/AuthContext.tsx";
 
 interface LessonListProps {
   selectedFilters: string[];
@@ -15,19 +16,28 @@ function LessonList({ selectedFilters }: LessonListProps) {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const authContext = useContext(AuthContext);
+
   useEffect(() => {
     const fetchLessons = async () => {
-      try {
-        const response = await getLessons();
-        setLessons(response.data);
-      } catch (error) {
-        setError("Error fetching lessons");
-      } finally {
+      if (authContext?.credentials) {
+        try {
+          const { username, password } = authContext.credentials;
+          const response = await getLessons(username, password);
+          setLessons(response.data);
+        } catch (error) {
+          setError("Error fetching lessons");
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        setError("No credentials found");
         setLoading(false);
       }
     };
+
     fetchLessons().then((r) => console.log(r));
-  }, []);
+  }, [authContext]);
 
   const filteredItems = lessons.filter((item) => {
     return selectedFilters.length === 0 || selectedFilters.includes(item.level);

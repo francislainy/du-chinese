@@ -2,8 +2,9 @@ import { createContext, useState, FC, ReactNode } from "react";
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (token: string) => void;
+  login: (username: string, password: string) => void;
   logout: () => void;
+  credentials?: { username: string; password: string };
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -12,19 +13,31 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [credentials, setCredentials] = useState<
+    { username: string; password: string } | undefined
+  >(undefined);
 
-  const login = (token: string) => {
-    localStorage.setItem("token", token);
+  const login = (username: string, password: string) => {
+    setCredentials({ username, password });
     setIsAuthenticated(true);
+
+    // // Set Axios headers after login
+    // axios.interceptors.request.use((config) => {
+    //   config.auth = { username, password };
+    //   return config;
+    // });
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     setIsAuthenticated(false);
+    setCredentials(undefined);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, login, logout, credentials }}
+    >
       {children}
     </AuthContext.Provider>
   );

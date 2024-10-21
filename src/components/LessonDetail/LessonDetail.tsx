@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom";
-// import "./LessonDetail.css";
 
 import duChineseCard from "../../assets/du-chinese-card.jpg";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   favouriteLesson,
   getLesson,
@@ -11,56 +10,68 @@ import {
   unreadLesson,
 } from "../../api/api.ts";
 import { ILesson } from "../../interfaces/ILesson.ts";
+import { AuthContext } from "../../context/AuthContext.tsx";
 
 function LessonDetail() {
   const { id } = useParams<{ id: string }>();
   const [lesson, setLesson] = useState<ILesson | null>(null);
 
+  const authContext = useContext(AuthContext);
+
   const toggleSaveFavourite = async () => {
-    if (id && lesson) {
-      try {
-        const response = lesson.favouritedByCurrentUser
-          ? await unfavouriteLesson(id)
-          : await favouriteLesson(id);
-        console.log(response);
-        setLesson({
-          ...lesson,
-          favouritedByCurrentUser: !lesson.favouritedByCurrentUser,
-        });
-      } catch (error) {
-        console.log("Error saving favourite");
+    if (authContext?.credentials) {
+      const { username, password } = authContext.credentials;
+      if (id && lesson) {
+        try {
+          const response = lesson.favouritedByCurrentUser
+            ? await unfavouriteLesson(id, username, password)
+            : await favouriteLesson(id, username, password);
+          console.log(response);
+          setLesson({
+            ...lesson,
+            favouritedByCurrentUser: !lesson.favouritedByCurrentUser,
+          });
+        } catch (error) {
+          console.log("Error saving favourite");
+        }
       }
     }
   };
 
   const toggleReadStatus = async () => {
-    if (id && lesson) {
-      try {
-        const response = lesson.readByCurrentUser
-          ? await unreadLesson(id)
-          : await readLesson(id);
-        console.log(response);
-        setLesson({
-          ...lesson,
-          readByCurrentUser: !lesson.readByCurrentUser,
-        });
-      } catch (error) {
-        console.log("Error saving read status");
+    if (authContext?.credentials) {
+      const { username, password } = authContext.credentials;
+      if (id && lesson) {
+        try {
+          const response = lesson.readByCurrentUser
+            ? await unreadLesson(id, username, password)
+            : await readLesson(id, username, password);
+          console.log(response);
+          setLesson({
+            ...lesson,
+            readByCurrentUser: !lesson.readByCurrentUser,
+          });
+        } catch (error) {
+          console.log("Error saving read status");
+        }
       }
     }
   };
 
   useEffect(() => {
-    if (id) {
-      const fetchLesson = async (id: string) => {
-        try {
-          const response = await getLesson(id);
-          setLesson(response.data);
-        } catch (error) {
-          console.log("Error fetching lesson");
-        }
-      };
-      fetchLesson(id).then((r) => console.log(r));
+    if (authContext?.credentials) {
+      const { username, password } = authContext.credentials;
+      if (id) {
+        const fetchLesson = async (id: string) => {
+          try {
+            const response = await getLesson(id, username, password);
+            setLesson(response.data);
+          } catch (error) {
+            console.log("Error fetching lesson");
+          }
+        };
+        fetchLesson(id).then((r) => console.log(r));
+      }
     }
   }, [id]);
 

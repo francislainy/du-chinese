@@ -14,7 +14,7 @@ const Register = () => {
       await register(username, password);
       const response = await login(username, password);
       if (response.status === 200) {
-        authContext?.login(response.data.token);
+        authContext?.login(username, password);
         navigate("/lessons");
       } else {
         console.log("Login after registration failed");

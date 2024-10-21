@@ -1,7 +1,7 @@
 import "./FilterList.css";
 import FilterItem from "../FilterItem/FilterItem";
-import { IFilter } from "../interfaces/IFilter.tsx";
 import React from "react";
+import { IFilter } from "../../interfaces/IFilter.ts";
 
 interface FilterListProps {
   selectedFilters: string[];
